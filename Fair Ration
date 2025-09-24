@@ -1,0 +1,19 @@
+char* fairRations(int B_count, int* B) {
+    static char result[20];   // output string
+    int loaves = 0;
+
+    for (int i = 0; i < B_count - 1; i++) {
+        if (B[i] % 2 != 0) {        // FIXED: != instead of ! =
+            B[i]++;
+            B[i + 1]++;
+            loaves += 2;
+        }
+    }
+
+    if (B[B_count - 1] % 2 != 0) {
+        return "NO";
+    } else {
+        sprintf(result, "%d", loaves);
+        return result;
+    }
+}
