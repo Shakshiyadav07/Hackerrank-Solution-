@@ -1,0 +1,23 @@
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+char* solve(int a, int b, int c) {
+    int g = gcd(a, b);   // Now compiler knows gcd
+    int max_capacity = (a > b) ? a : b;
+
+    char* result = malloc(4 * sizeof(char)); // "YES" or "NO"
+
+    if (c <= max_capacity && c % g == 0) {
+        strcpy(result, "YES");
+    } else {
+        strcpy(result, "NO");
+    }
+
+    return result;
+}
