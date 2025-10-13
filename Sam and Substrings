@@ -1,0 +1,14 @@
+int substrings(char* n) 
+{
+    int len = strlen(n);
+    long long result = 0;
+    long long f = 0; // Stores cumulative substring sum ending at current index
+
+    for (int i = 0; i < len; i++) {
+        int digit = n[i] - '0';
+        f = ((f * 10) % MOD + ((long long)(i + 1) * digit) % MOD) % MOD;
+        result = (result + f) % MOD;
+    }
+
+    return (int)result;
+}
