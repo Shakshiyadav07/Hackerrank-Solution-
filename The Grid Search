@@ -1,0 +1,20 @@
+char* gridSearch(int G_count, char** G, int P_count, char** P) {
+    int R = G_count;         // number of rows in G
+    int r = P_count;         // number of rows in P
+    int C = strlen(G[0]);    // number of columns in G (assuming all rows same length)
+    int c = strlen(P[0]);    // number of columns in P
+
+    for (int i = 0; i <= R - r; i++) {           // rows where pattern can start
+        for (int j = 0; j <= C - c; j++) {       // columns where pattern can start
+            int match = 1;
+            for (int k = 0; k < r; k++) {        // check each row of pattern
+                if (strncmp(&G[i + k][j], P[k], c) != 0) {
+                    match = 0;
+                    break;
+                }
+            }
+            if (match) return "YES";  // pattern found
+        }
+    }
+    return "NO";  // pattern not found
+}
