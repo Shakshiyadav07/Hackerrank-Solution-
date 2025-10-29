@@ -1,0 +1,35 @@
+#include <iostream>
+#include <unordered_set>
+using namespace std;
+
+int pairs(int arr[], int n, int k) {
+    unordered_set<int> elements;
+    int count = 0;
+
+    // Store all elements in the set
+    for (int i = 0; i < n; i++) {
+        elements.insert(arr[i]);
+    }
+
+    // For each element, check if (element + k) exists
+    for (int i = 0; i < n; i++) {
+        if (elements.find(arr[i] + k) != elements.end()) {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+int main() {
+    int n, k;
+    cin >> n >> k;
+
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    cout << pairs(arr, n, k) << endl;
+    return 0;
+}
