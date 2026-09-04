@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int migratoryBirds(int arr_count, int arr[]) {
+    int frequency[6] = {0};
+
+    for (int i = 0; i < arr_count; i++) {
+        frequency[arr[i]]++;
+    }
+
+    int birdType = 1;
+
+    for (int i = 2; i <= 5; i++) {
+        if (frequency[i] > frequency[birdType]) {
+            birdType = i;
+        }
+    }
+
+    return birdType;
+}
+
+int main() {
+    int n;
+
+    scanf("%d", &n);
+
+    int arr[n];
+
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("%d\n", migratoryBirds(n, arr));
+
+    return 0;
+}
