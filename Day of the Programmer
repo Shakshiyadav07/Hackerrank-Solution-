@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+char* dayOfProgrammer(int year) {
+    static char result[20];
+
+    if (year == 1918) {
+        sprintf(result, "26.09.1918");
+    }
+    else if (year < 1918) {
+        // Julian Calendar
+        if (year % 4 == 0) {
+            sprintf(result, "12.09.%d", year);
+        } else {
+            sprintf(result, "13.09.%d", year);
+        }
+    }
+    else {
+        // Gregorian Calendar
+        if (year % 400 == 0 ||
+            (year % 4 == 0 && year % 100 != 0)) {
+            sprintf(result, "12.09.%d", year);
+        } else {
+            sprintf(result, "13.09.%d", year);
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    int year;
+
+    scanf("%d", &year);
+
+    printf("%s\n", dayOfProgrammer(year));
+
+    return 0;
+}
